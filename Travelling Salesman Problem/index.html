@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shortest Path</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: "Montserrat", sans-serif;
+      }
+      .container {
+        position: relative;
+      }
+      canvas {
+        border: 1px solid black;
+      }
+      #slider-panel {
+        position: absolute;
+        top: 0;
+        left: -33.33%;
+        width: 200px;
+        height: 100%;
+        background-color: #eee;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      #city-list {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 200px;
+        height: 100%;
+        background-color: #eee;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      .citylist {
+        height: 500px; /* Set the height */
+        overflow-y: scroll; /* Enable the scrollbar */
+      }
+
+      .citylist ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .citylist li {
+        padding: 5px;
+      }
+
+      .citylist li:hover {
+        background-color: #ddd;
+      }
+
+      .deleteButton {
+        background-color: #f44336;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 5px 10px;
+        font-size: 14px;
+      }
+
+      .deleteButton:hover {
+        background-color: #ef6f66;
+      }
+
+      #delete-all-btn {
+        background-color: #000000;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 5px 10px;
+        font-size: 15px;
+      }
+
+      #delete-all-btn:hover {
+        background-color: #5f5c5c;
+      }
+
+      h1 {
+        font-size: 40px;
+        font-weight: 700;
+        margin: 0;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        margin: 0;
+        margin-bottom: 10px;
+      }
+
+      label {
+        font-size: 14px;
+        font-weight: 400;
+        margin: 0;
+        margin-bottom: 10px;
+      }
+
+      input {
+        margin-bottom: 10px;
+      }
+
+      #instructionsList {
+        list-style-type: none;
+        font-size: 14px;
+        font-weight: 400;
+        margin: 0;
+        margin-left: -20%;
+      }
+
+      #instructionsList li {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Shortest Path</h1>
+    <div class="container">
+      <div id="slider-panel">
+        <div>
+          <label for="speed">Speed</label>
+          <input
+            type="range"
+            id="speedSlider"
+            name="speed"
+            min="1"
+            max="100"
+            value="10"
+            oninput="speed = this.value"
+          />
+          <br />
+          <label for="showUnsolved">Show Unsolved</label>
+          <input
+            type="checkbox"
+            id="showUnsolved"
+            name="showUnsolved"
+            onchange="animateTour(shortestTour())"
+            checked
+          />
+          <br />
+          <label for="colorByDistance">Color by Distance</label>
+          <input
+            type="checkbox"
+            id="colorByDistance"
+            name="colorByDistance"
+            onchange="animateTour(shortestTour())"
+            checked
+          />
+          <!-- Add instruction labels -->
+          <br />
+          <h2>Instructions</h2>
+          <ul id="instructionsList">
+            <li>Click on the canvas to add a point.</li>
+            <li>Delete a point using the left side panel.</li>
+            <li>Click on the "Delete All" button to delete all points.</li>
+            <li>
+              Click on the "Show Unsolved" checkbox to show the unsolved
+              solution.
+            </li>
+            <li>
+              Click on the "Color by Distance" checkbox to color the lines by
+              distance.
+            </li>
+            <li>Slide the "Speed" slider to change the animation speed.</li>
+          </ul>
+        </div>
+      </div>
+      <canvas id="canvas"></canvas>
+      <div id="city-list" class="citylist">
+        <h2>Points</h2>
+        <button id="delete-all-btn" onclick="deleteAllPoints()">
+          Delete All
+        </button>
+        <ul></ul>
+      </div>
+    </div>
+    <script src="ui.js"></script>
+    <script src="main.js"></script>
+    <script src="listeners.js"></script>
+  </body>
+</html>
