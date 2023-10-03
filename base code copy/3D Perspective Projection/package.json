@@ -1,0 +1,14 @@
+{
+  "name": "3d-perspective-projection",
+  "version": "1.0.0",
+  "description": "3D projection ",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrian Wilson",
+  "license": "ISC",
+  "dependencies": {
+    "mathjs": "^11.2.1"
+  }
+}
